@@ -1,57 +1,71 @@
 //your code here
-Particle[] pill= new Particle[num];
+Particle[] pill= new Particle[301];
 void setup()
 {
   size(500, 500);
   background(0);
-  for (int i=0; i<num; i++)
+  for (int i=0; i<299; i++)
   {
-    pill[i]= new Particle();
+    pill[i]= new NormalParticle();
   }
-
-  //your code here
+  pill[300]=new OddballParticle();
+  pill[301]=new JumboParticle();//your code here
+}
 }
 void draw()
 {
-  for (int i=0; i<num; i++)
+  for (int i=0; i<301; i++)
   {
+    pill= new normalParticle();
     pill[i].show();
     pill[i].move();//your code here
   }
-  class NormalParticle implements Particle
-  {
-    double myX, myY, nAngle, nSpeed;
-    int nSize, nColor;
-    NormalParticle() 
-    {
-      myX=250;
-      myY=250;
-      nColor=(int)(Math.random()*255);
-      nAngle=Math.random()*10;
-      nSpeed=Math.random()*5;
-    }
-    void move()
-    {
-      x=Math.cos(nAngle)*nSpeed;
-      y=Math.sin(nAngle)+nSpeed;
-    }
-    void show()
-    {
-      fill(nColor, nColor, nColor, nColor);
-      ellipse(x, y, nSize, nSize);
-    }
-  }	//your code here
 }
+class NormalParticle implements Particle
+{
+  double myX, myY, nAngle, nSpeed;
+  int nSize, nColor;
+  NormalParticle() 
+  {
+    myX=250;
+    myY=250;
+    nColor=color((int)(Math.random()*255));
+    nAngle=Math.random()*10;
+    nSpeed=Math.random()*5;
+  }
+  void move()
+  {
+    myX=Math.cos(nAngle)*nSpeed;
+    myY=Math.sin(nAngle)+nSpeed;
+    nAngle=nAngle+0.05;
+  }
+  void show()
+  {
+    fill(nColor, nColor, nColor, nColor);
+    ellipse(x, y, nSize, nSize);
+  }
+}	//your code here
+
 interface Particle
 {
   public void show();
   public void move();//your code here
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
-  //your code here
+  double myX, myY, nSpeed, nAngle;
+  int nColor;
+  OddballParticle()
+  {
+    myX=250;
+    myY=250;
+    nSpeed=10;
+    angle=(Math.random()*2);
+    nColor=color((int)(Math.random()*255));
+    //your code here
+  }
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends Particle  //uses inheritance
 {
   //your code here
 }
