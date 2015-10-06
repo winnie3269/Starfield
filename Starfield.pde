@@ -1,16 +1,16 @@
 //your code here
 Particle[] pill= new Particle[301];
+
 void setup()
 {
   size(500, 500);
   background(0);
-  for (int i=0; i<299; i++)
+  for (int i=0; i<298; i++)
   {
     pill[i]= new NormalParticle();
   }
-  pill[300]=new OddballParticle();
-  pill[301]=new JumboParticle();//your code here
-}
+  pill[299]=new OddballParticle();
+  pill[300]=new JumboParticle();//your code here
 }
 void draw()
 {
@@ -62,10 +62,14 @@ class OddballParticle implements Particle //uses an interface
     nSpeed=10;
     angle=(Math.random()*2);
     nColor=color((int)(Math.random()*255));
-    //your code here
+  //your code here
   }
 }
 class JumboParticle extends Particle  //uses inheritance
 {
-  //your code here
+  JumboParticle()
+  {
+    nSize=30;
+  }//your code here
 }
+
