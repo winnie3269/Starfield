@@ -13,20 +13,19 @@ void setup()
 
 void draw()
 {
-  fill(0);
-  rect(0,0,500,500);
-  for (int i=0; i<301; i++)
+  background(0);
+  for (int i=0; i<pill.length; i++)
   {
-    pill[i].show();
     pill[i].move();
+    pill[i].show();
     pill[i].reset();
   }
-  pill[0].show();
-  pill[0].move();
-  pill[0].reset();
-  pill[1].show();
   pill[1].move();
+  pill[1].show();
   pill[1].reset();
+  pill[0].move();
+  pill[0].show();
+  pill[0].reset();
 }
 class NormalParticle implements Particle
 {
@@ -36,7 +35,7 @@ class NormalParticle implements Particle
   {
     myX=250;
     myY=250;
-    nColor=color((int)(Math.random()*255));
+    nColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
     nAngle=(Math.random()*2*Math.PI);
     nSpeed=Math.random()*5;
     nSize=7;
@@ -46,11 +45,16 @@ class NormalParticle implements Particle
     myX=myX+Math.cos(nAngle)*nSpeed;
     myY=myY+Math.sin(nAngle)+nSpeed;
     nAngle=nAngle+0.05;
+    if (myX>500 || myX<0)
+    {
+      myX=250;
+      myY=250;
+    }
   }
   public void show()
   {
     noStroke();
-    fill(nColor, nColor, nColor, nColor);
+    fill(nColor);
     ellipse((float)myX, (float)myY, nSize, nSize);
   }
   public void reset()
@@ -59,9 +63,6 @@ class NormalParticle implements Particle
     {
       myX=250;
       myY=250;
-      nSize=7;
-      nSpeed=10;
-      nAngle=(Math.random()*2);
     }
   }
 }
@@ -82,14 +83,14 @@ class OddballParticle implements Particle //uses an interface
     myY=250;
     nSpeed=10;
     nAngle=(Math.random()*2);
-    nColor=color((int)(Math.random()*255));//your code here
+    nColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));//your code here
   }
   public void move()
   {
     myX=myX+nAngle;
     myY=myY+nSpeed;
-    nAngle=(int)(Math.random()*6)-2;
-    nSpeed=(int)(Math.random()*6)-2;
+    nAngle=(int)(Math.random()*0.5)-2;
+    nSpeed=(int)(Math.random()*0.5)-2;
     if (myX>500||myX<0)
     {
       myX=250;
