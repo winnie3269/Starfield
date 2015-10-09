@@ -29,22 +29,23 @@ void draw()
 }
 class NormalParticle implements Particle
 {
-  double myX, myY, nAngle, nSpeed;
-  int nSize, nColor, x, y;
+  double myX, myY, nAngle, nSpeed,a,s;
+  int nColor, nSize;
   NormalParticle() 
   {
     myX=250;
     myY=250;
-    nColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
+    nColor=color((int)(Math.random()*255)+50, 0, (int)(Math.random()*255)+50);
     nAngle=(Math.random()*2*Math.PI);
-    nSpeed=Math.random()*5;
+    nSpeed=Math.random()*2;
     nSize=7;
   }
   public void move()
   {
-    myX=myX+Math.cos(nAngle)*nSpeed;
-    myY=myY+Math.sin(nAngle)+nSpeed;
-    nAngle=nAngle+0.05;
+    a=Math.cos(nAngle)*nSpeed;
+    s=Math.sin(nAngle)*nSpeed;
+    myX=myX-a;
+    myY=myY-s;
     if (myX>500 || myX<0)
     {
       myX=250;
@@ -81,26 +82,19 @@ class OddballParticle implements Particle //uses an interface
   {
     myX=250;
     myY=250;
-    nSpeed=10;
-    nAngle=(Math.random()*2);
     nColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));//your code here
   }
   public void move()
   {
     myX=myX+nAngle;
     myY=myY+nSpeed;
-    nAngle=(int)(Math.random()*0.5)-2;
-    nSpeed=(int)(Math.random()*0.5)-2;
-    if (myX>500||myX<0)
-    {
-      myX=250;
-      myY=250;
-    }
+    nAngle=(int)(Math.random()*6)-2;
+    nSpeed=(int)(Math.random()*6)-2;
   }
   public void show()
   {
     noStroke();
-    fill(nColor, nColor, nColor, nColor);
+    fill(nColor);
     ellipse((float)myX, (float) myY, 10, 10);
   }
   public void reset()
@@ -121,7 +115,8 @@ class JumboParticle extends NormalParticle  //uses inheritance
 {
   JumboParticle()
   {
-    nSize=30;
+    nSize=50;
+    nColor=color(255);
   }
   public void reset()
   {
