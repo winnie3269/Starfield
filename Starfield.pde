@@ -35,7 +35,7 @@ class NormalParticle implements Particle
   {
     myX=250;
     myY=250;
-    nColor=color((int)(Math.random()*255)+50, 0, (int)(Math.random()*255)+50);
+    nColor=color((int)(Math.random()*255)+50, 0, (int)(Math.random()*255)+50,(int)(Math.random()*255));
     nAngle=(Math.random()*2*Math.PI);
     nSpeed=Math.random()*2;
     nSize=7;
