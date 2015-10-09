@@ -1,4 +1,3 @@
-//your code here
 Particle[] pill= new Particle[301];
 void setup()
 {
@@ -29,13 +28,13 @@ void draw()
 }
 class NormalParticle implements Particle
 {
-  double myX, myY, nAngle, nSpeed,a,s;
+  double myX, myY, nAngle, nSpeed, a, s;
   int nColor, nSize;
   NormalParticle() 
   {
     myX=250;
     myY=250;
-    nColor=color((int)(Math.random()*255)+50, 0, (int)(Math.random()*255)+50,(int)(Math.random()*255));
+    nColor=color((int)(Math.random()*255)+50, 0, (int)(Math.random()*255)+50, (int)(Math.random()*255));
     nAngle=(Math.random()*2*Math.PI);
     nSpeed=Math.random()*2;
     nSize=7;
@@ -72,9 +71,9 @@ interface Particle
 {
   public void show();
   public void move();
-  public void reset();//your code here
+  public void reset();
 }
-class OddballParticle implements Particle //uses an interface
+class OddballParticle implements Particle 
 {
   double myX, myY, nSpeed, nAngle;
   int nColor;
@@ -111,7 +110,7 @@ class OddballParticle implements Particle //uses an interface
     }
   }
 }
-class JumboParticle extends NormalParticle  //uses inheritance
+class JumboParticle extends NormalParticle 
 {
   JumboParticle()
   {
